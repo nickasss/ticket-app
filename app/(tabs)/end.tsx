@@ -1,14 +1,14 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Index = () => {
+const End = () => {
   return (
     <SafeAreaView>
-      <Text>ahsdahsjkcbakskdja</Text>
+      <Text>End</Text>
     </SafeAreaView>
   )
 }
 
-export default Index
+export default End
 
 const styles = StyleSheet.create({})

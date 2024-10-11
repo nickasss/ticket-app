@@ -1,14 +1,14 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Index = () => {
+const confirmForm = () => {
   return (
     <SafeAreaView>
-      <Text>ahsdahsjkcbakskdja</Text>
+      <Text>confirmForm</Text>
     </SafeAreaView>
   )
 }
 
-export default Index
+export default confirmForm
 
 const styles = StyleSheet.create({})
