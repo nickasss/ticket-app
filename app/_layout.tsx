@@ -1,16 +1,15 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
+import { Button } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -26,8 +25,15 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Slot />
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="index" options={{
+        headerShown: false
+      }} />
+      <Stack.Screen name="form" />
+      <Stack.Screen name="confirmForm" options={{
+        headerLeft: () => <Button onPress={() => {console.log("Hello beech")}} title='ror' />
+      }} />
+      <Stack.Screen name="end" />
+    </Stack>
   );
 }

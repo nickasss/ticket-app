@@ -4,7 +4,7 @@ import React from 'react'
 const Index = () => {
   return (
     <SafeAreaView>
-      <Text>ahsdahsjkcbakskdja</Text>
+      <Text>ror</Text>
     </SafeAreaView>
   )
 }
