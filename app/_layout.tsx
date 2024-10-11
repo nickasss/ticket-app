@@ -3,8 +3,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { Stack } from 'expo-router';
-import { Button } from 'react-native';
+import { Link, Stack } from 'expo-router';
+import { Button, Text } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,13 +27,18 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{
+        headerShown: false,
+        title: ""
+      }} />
+      <Stack.Screen name="form" options={{
+        headerTitle: "",
+      }} />
+      <Stack.Screen name="confirmForm" options={{
+        title: ""
+      }} />
+      <Stack.Screen name="end" options={{
         headerShown: false
       }} />
-      <Stack.Screen name="form" />
-      <Stack.Screen name="confirmForm" options={{
-        headerLeft: () => <Button onPress={() => {console.log("Hello beech")}} title='ror' />
-      }} />
-      <Stack.Screen name="end" />
     </Stack>
   );
 }
