@@ -1,9 +1,21 @@
+
+import React, { useContext, useEffect } from 'react'
+import { Link } from 'expo-router'
+import { ParticipantContext } from '@/lib/ParticipantProvider'
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
 
 const Form = () => {
+  const {participant, setParticipant} = useContext(ParticipantContext);
+  useEffect(() => {
+    console.log(participant)
+    return () => {
+      setParticipant(p => {
+        return {...p!, qrData: ""}
+      })
+    }
+  }, [])
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.FormContainer}>
