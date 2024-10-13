@@ -31,10 +31,10 @@ const Index = () => {
     // Camera permissions are not granted yet.
     console.log('asking');
     return (
-      <View>
+      <SafeAreaView>
         <Text>We need your permission to show the camera</Text>
         <Button onPress={requestCameraPermission} title="grant permission" />
-      </View>
+      </SafeAreaView>
     );
   }
   console.log('permission granted');
