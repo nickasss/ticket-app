@@ -8,18 +8,19 @@ const Index = () => {
   const { participant, setParticipant } = useContext(ParticipantContext);
 
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
-  const [scanned, setScanned] = useState(false);
 
   const router = useRouter();
   const nav = useNavigation()
 
   useEffect(() => {
-    const subscribe = nav.addListener("focus", ({ data, target, type}) => {
+    const unsubscribe = nav.addListener("focus", () => {
       setParticipant((p) => {
         return { ...p, qrData: "" };
       });
     })
-  })
+
+    return () => unsubscribe()
+  }, [])
 
   if (!cameraPermission) {
     console.log('loading');

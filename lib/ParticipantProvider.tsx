@@ -20,7 +20,6 @@ export const ParticipantContext = createContext<IParticipantContext>({
   setParticipant: () => {},
 });
 
-
 export default function ParticipantProvider({
   children,
 }: {
