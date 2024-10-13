@@ -1,6 +1,7 @@
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
 
 const Form = () => {
   return (
@@ -25,9 +26,11 @@ const Form = () => {
           <Text style={styles.inputTitle}>Batch Year</Text>
           <TextInput placeholder="Write your Batch Year" style={styles.input} />
         </View>
-
+        
         <TouchableOpacity style={styles.submitButton}>
-          <Text style={styles.submitButtonText}>SUBMIT</Text>
+          <Link href="/confirmForm" style={styles.submitButtonText}>
+            SUBMIT
+          </Link>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -82,3 +85,4 @@ const styles = StyleSheet.create({
 });
 
 export default Form;
+ 
