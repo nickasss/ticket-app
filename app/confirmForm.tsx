@@ -1,16 +1,10 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
 import React from 'react';
 import { Link, router } from 'expo-router';
 
 const ConfirmForm = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.titleText}>CONFIRM DETAILS</Text>
       <Text style={styles.subTitleText}>
         Lorem ipsum is simply dummy text of the printing and typesetting
@@ -35,11 +29,12 @@ const ConfirmForm = () => {
           <Text style={styles.inputText}>2004-2005</Text>
         </View>
       </View>
-
-      <Link href="/end" style={styles.submitButton}>
-        <Text style={styles.submitButtonText}>SUBMIT</Text>
+      <Link href="/end" style={{alignSelf: "center"}}>
+        <View style={styles.submitButton}>
+          <Text style={styles.submitButtonText}>Submit</Text>
+        </View>
       </Link>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -49,8 +44,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    padding: 20,
     backgroundColor: '#fff',
+    
   },
   titleText: {
     fontSize: 22,
@@ -66,6 +62,8 @@ const styles = StyleSheet.create({
   },
   confirmationContainer: {
     marginVertical: 20,
+    padding: 20,
+    justifyContent: "center"
   },
   detailRow: {
     flexDirection: 'row',
@@ -82,15 +80,20 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   submitButton: {
-    backgroundColor: '#000',
-    padding: 15,
-    borderRadius: 8,
+    backgroundColor: 'black',
+    padding: 20,
     alignItems: 'center',
-    marginTop: 30,
+    width: 200,
+    borderWidth: 5,
+    borderRadius: 20,
+
   },
   submitButtonText: {
-    color: '#fff',
+    borderRadius: 20,
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: 'black',
   },
 });

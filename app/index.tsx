@@ -10,17 +10,17 @@ const Index = () => {
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
 
   const router = useRouter();
-  const nav = useNavigation()
+  const nav = useNavigation();
 
   useEffect(() => {
-    const unsubscribe = nav.addListener("focus", () => {
+    const unsubscribe = nav.addListener('focus', () => {
       setParticipant((p) => {
-        return { ...p, qrData: "" };
+        return { ...p, qrData: '' };
       });
-    })
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   if (!cameraPermission) {
     console.log('loading');
@@ -38,32 +38,29 @@ const Index = () => {
     );
   }
   console.log('permission granted');
-  console.log(participant)
+  console.log(participant);
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Camera Screen</Text>
-      <CameraView
-        barcodeScannerSettings={{
-          barcodeTypes: ['qr'],
-        }}
-        style={styles.camera}
-        facing={'back'}
-        ratio={'1:1'}
-        onBarcodeScanned={({ data }) => {
-          if (!participant?.qrData) {
-            console.log('Not scanned yet');
-            setParticipant((p) => {
-              return { ...p, qrData: data };
-            });
-            router.push('/form');
-            
-          }
-          
-        }}
-      ></CameraView>
-      <Link href={'/form'}>
-        <Text>Hello world</Text>
-      </Link>
+    <SafeAreaView style={styles.safeContainer}>
+      <View style={styles.container}>
+        <Text>Please scan the QR code provided.</Text>
+        <CameraView
+          barcodeScannerSettings={{
+            barcodeTypes: ['qr'],
+          }}
+          style={styles.camera}
+          facing={'back'}
+          ratio={'1:1'}
+          onBarcodeScanned={({ data }) => {
+            if (!participant?.qrData) {
+              console.log('Not scanned yet');
+              setParticipant((p) => {
+                return { ...p, qrData: data };
+              });
+              router.push('/form');
+            }
+          }}
+        ></CameraView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -71,9 +68,14 @@ const Index = () => {
 export default Index;
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 20,
   },
   camera: {
     height: '60%',

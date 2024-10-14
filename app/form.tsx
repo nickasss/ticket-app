@@ -20,7 +20,7 @@ const Form = () => {
   const [title, setTitle] = useState('');
   const [batchYear, setbatchYear] = useState('');
 
-  //errors 
+  //errors
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
   const [companyNameError, setcompanyNameError] = useState('');
@@ -58,14 +58,31 @@ const Form = () => {
     if (!batchYear) {
       setBatchYearError('Batch Year is required');
       valid = false;
-    } else if (batchYear.length !== 4 || batchYearNum > currentYear || batchYearNum < 2008) {
-      setBatchYearError('Batch year must be a 4-digit number between 2008 and the current year');
+    } else if (
+      batchYear.length !== 4 ||
+      batchYearNum > currentYear ||
+      batchYearNum < 2008
+    ) {
+      setBatchYearError(
+        'Batch year must be a 4-digit number between 2008 and the current year'
+      );
       valid = false;
     }
 
     if (!valid) {
       return;
     }
+
+    setParticipant((p) => {
+      return {
+        batch: batchYear,
+        company: companyName,
+        firstname: firstName,
+        lastname: lastName,
+        qrData: p.qrData,
+        title: title,
+      };
+    });
 
     console.log([firstName, lastName, companyName, title, batchYear]);
 
@@ -99,7 +116,9 @@ const Form = () => {
               value={firstName}
               onChangeText={setFirstName}
             />
-            {firstNameError ? <Text style={styles.errorText}>{firstNameError}</Text> : null}
+            {firstNameError ? (
+              <Text style={styles.errorText}>{firstNameError}</Text>
+            ) : null}
 
             <Text style={styles.inputTitle}>Last Name</Text>
             <TextInput
@@ -108,7 +127,9 @@ const Form = () => {
               value={lastName}
               onChangeText={setLastName}
             />
-            {lastNameError ? <Text style={styles.errorText}>{lastNameError}</Text> : null}
+            {lastNameError ? (
+              <Text style={styles.errorText}>{lastNameError}</Text>
+            ) : null}
 
             <Text style={styles.inputTitle}>Company</Text>
             <TextInput
@@ -125,7 +146,9 @@ const Form = () => {
               value={title}
               onChangeText={setTitle}
             />
-            {titleError ? <Text style={styles.errorText}>{titleError}</Text> : null}
+            {titleError ? (
+              <Text style={styles.errorText}>{titleError}</Text>
+            ) : null}
 
             <Text style={styles.inputTitle}>Batch Year</Text>
             <TextInput
@@ -136,11 +159,20 @@ const Form = () => {
               keyboardType="numeric"
               onChangeText={setbatchYear}
             />
-            {batchYearError ? <Text style={styles.errorText}>{batchYearError}</Text> : null}
+            {batchYearError ? (
+              <Text style={styles.errorText}>{batchYearError}</Text>
+            ) : null}
           </View>
 
           <Pressable style={styles.submitButton} onPress={handleSubmit}>
-            <Text>SUBMIT</Text>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+              }}
+            >
+              SUBMIT
+            </Text>
           </Pressable>
         </View>
       </SafeAreaView>
