@@ -85,6 +85,14 @@ const Form = () => {
     });
 
     console.log([firstName, lastName, companyName, title, batchYear]);
+    setParticipant((prevParticipant) => ({
+      ...prevParticipant,
+      firstname: firstName,
+      lastname: lastName,
+      company: companyName,
+      title: title,
+      batch: batchYear,
+    }));
 
     router.push('/confirmForm');
   };
