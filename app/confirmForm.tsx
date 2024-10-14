@@ -5,10 +5,12 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
-import { Link, router } from 'expo-router';
+import React, { useContext } from 'react';
+import { Link, router, } from 'expo-router';
+import { ParticipantContext } from '@/lib/ParticipantProvider';
 
 const ConfirmForm = () => {
+  const {participant} = useContext(ParticipantContext);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titleText}>CONFIRM DETAILS</Text>
@@ -20,19 +22,19 @@ const ConfirmForm = () => {
       <View style={styles.confirmationContainer}>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Name:</Text>
-          <Text style={styles.inputText}>Nicholae Sara</Text>
+          <Text style={styles.inputText}>{participant!.firstname} {participant!.lastname}</Text>
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Company:</Text>
-          <Text style={styles.inputText}>Tesla</Text>
+          <Text style={styles.inputText}>{participant!.company}</Text>
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Title:</Text>
-          <Text style={styles.inputText}>CEO</Text>
+          <Text style={styles.inputText}>{participant!.title}</Text>
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Batch Year:</Text>
-          <Text style={styles.inputText}>2004-2005</Text>
+          <Text style={styles.inputText}>{participant!.batch}</Text>
         </View>
       </View>
 
