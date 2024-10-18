@@ -10,6 +10,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { StyleSheet } from 'react-native';
 
 const Form = () => {
@@ -125,6 +126,7 @@ const Form = () => {
   }, []);
 
   return (
+    <KeyboardAwareScrollView>
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.formContainer}>
@@ -188,7 +190,8 @@ const Form = () => {
             placeholder="09123456789"
             style={styles.input}
             value={phone}
-            inputMode="text"
+            inputMode="numeric"
+            keyboardType="numeric"
             onChangeText={setPhone}
           />
           {phoneError && <Text style={styles.errorText}>{phoneError}</Text>}
@@ -215,6 +218,7 @@ const Form = () => {
         </View>
       </View>
     </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   );
 };
 
