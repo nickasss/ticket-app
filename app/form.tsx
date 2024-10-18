@@ -17,7 +17,7 @@ const Form = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [title, setTitle] = useState('');
+  const [position, setPosition] = useState('');
   const [batchYear, setBatchYear] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -25,11 +25,11 @@ const Form = () => {
   //errors
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
-  const [companyNameError, setcompanyNameError] = useState('');
-  const [titleError, setTitleError] = useState('');
+  // const [companyNameError, setCompanyNameError] = useState('');
+  const [positionError, setPositionError] = useState('');
   const [batchYearError, setBatchYearError] = useState('');
   const [phoneError, setPhoneError] = useState('');
-  const [emailError, setemailError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const router = useRouter();
 
@@ -38,9 +38,11 @@ const Form = () => {
 
     setFirstNameError('');
     setLastNameError('');
-    setcompanyNameError('');
-    setTitleError('');
+    // setCompanyNameError('');
+    setPositionError('');
     setBatchYearError('');
+    setPhoneError('')
+    setEmailError('')
 
     if (!firstName) {
       setFirstNameError('First Name is required');
@@ -52,13 +54,13 @@ const Form = () => {
       valid = false;
     }
 
-    if (companyName && !title) {
-      setTitleError('Title is required if company name is provided');
+    if (companyName && !position) {
+      setPosition('Position is required if company name is provided');
       valid = false;
     }
 
     if (!email) {
-      setemailError('Email is required');
+      setEmailError('Email is required');
       valid = false;
     }
 
@@ -94,19 +96,19 @@ const Form = () => {
         firstname: firstName,
         lastname: lastName,
         qrData: p.qrData,
-        title: title,
+        position: position,
         phone: phone,
         email: email
       };
     });
 
-    console.log([firstName, lastName, companyName, title, batchYear]);
+    console.log([firstName, lastName, companyName, position, batchYear]);
     setParticipant((prevParticipant) => ({
       ...prevParticipant,
       firstname: firstName,
       lastname: lastName,
       company: companyName,
-      title: title,
+      position: position,
       batch: batchYear,
     }));
 
@@ -127,12 +129,12 @@ const Form = () => {
       <View style={styles.container}>
         <View style={styles.formContainer}>
           <Text style={styles.titleText}>PERSONAL DETAILS</Text>
-          <Text style={styles.subTitleText}>
+          <Text style={styles.subtitleText}>
             Please input the following details
           </Text>
           <Text style={styles.inputTitle}>First Name</Text>
           <TextInput
-            placeholder="Write your First Name"
+            placeholder="John"
             style={styles.input}
             value={firstName}
             onChangeText={setFirstName}
@@ -143,7 +145,7 @@ const Form = () => {
 
           <Text style={styles.inputTitle}>Last Name</Text>
           <TextInput
-            placeholder="Write your Last Name"
+            placeholder="Dela Torre"
             style={styles.input}
             value={lastName}
             onChangeText={setLastName}
@@ -154,24 +156,24 @@ const Form = () => {
 
           <Text style={styles.inputTitle}>Company</Text>
           <TextInput
-            placeholder="Write your Company Name"
+            placeholder="Company Corp"
             style={styles.input}
             value={companyName}
             onChangeText={setCompanyName}
           />
 
-          <Text style={styles.inputTitle}>Title</Text>
+          <Text style={styles.inputTitle}>position</Text>
           <TextInput
-            placeholder="Write your Title"
+            placeholder="CEO"
             style={styles.input}
-            value={title}
-            onChangeText={setTitle}
+            value={position}
+            onChangeText={setPosition}
           />
-          {titleError && <Text style={styles.errorText}>{titleError}</Text>}
+          {positionError && <Text style={styles.errorText}>{positionError}</Text>}
 
           <Text style={styles.inputTitle}>Batch Year</Text>
           <TextInput
-            placeholder="Write your Batch Year"
+            placeholder="2020"
             style={styles.input}
             value={batchYear}
             inputMode="numeric"
@@ -181,10 +183,9 @@ const Form = () => {
           {batchYearError && (
             <Text style={styles.errorText}>{batchYearError}</Text>
           )}
-
           <Text>Phone Number</Text>
           <TextInput
-            placeholder="Write your Phone Number"
+            placeholder="09123456789"
             style={styles.input}
             value={phone}
             inputMode="text"
@@ -193,7 +194,7 @@ const Form = () => {
           {phoneError && <Text style={styles.errorText}>{phoneError}</Text>}
           <Text>Email</Text>
           <TextInput
-            placeholder="Write your Email"
+            placeholder="john123@samplemail.com"
             style={styles.input}
             value={email}
             inputMode="email"
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  subTitleText: {
+  subtitleText: {
     fontSize: 14,
     color: '#5F6266',
     textAlign: 'center',

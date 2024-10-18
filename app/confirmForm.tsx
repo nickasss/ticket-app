@@ -25,8 +25,8 @@ const ConfirmForm = () => {
           <Text style={styles.inputText}>{participant!.company}</Text>
         </View>
         <View style={styles.detailRow}>
-          <Text style={styles.label}>Title:</Text>
-          <Text style={styles.inputText}>{participant!.title}</Text>
+          <Text style={styles.label}>Position:</Text>
+          <Text style={styles.inputText}>{participant!.position}</Text>
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Phone:</Text>

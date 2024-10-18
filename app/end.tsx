@@ -17,7 +17,7 @@ const End = () => {
         company: participant.company,
         firstName: participant.firstname,
         lastName: participant.lastname,
-        title: participant.title,
+        position: participant.position,
         phone: participant.phone,
         email: participant.email
       })

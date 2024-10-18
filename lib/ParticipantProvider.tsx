@@ -6,7 +6,7 @@ type Participant = {
   firstname: string;
   lastname: string;
   company: string;
-  title: string;
+  position: string;
   batch: string;
   phone: string;
   email: string;
@@ -33,7 +33,7 @@ export default function ParticipantProvider({
     firstname: "",
     lastname: "",
     qrData: "",
-    title: "",
+    position: "",
     phone: "",
     email: ""
   });
