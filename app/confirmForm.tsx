@@ -29,9 +29,16 @@ const ConfirmForm = () => {
           <Text style={styles.inputText}>{participant!.title}</Text>
         </View>
         <View style={styles.detailRow}>
-          <Text style={styles.label}>Batch Year:</Text>
-          <Text style={styles.inputText}>{participant!.batch}</Text>
+          <Text style={styles.label}>Phone:</Text>
+          <Text style={styles.inputText}>09123456789</Text>
         </View>
+        <View style={styles.detailRow}>
+          <Text style={styles.label}>Email:</Text>
+          <Text style={styles.inputText}>gwapo123@gmail.com</Text>
+        </View>
+    
+        
+        
       </View>
       <Link href="/end" style={{ alignSelf: 'center' }}>
         <View style={styles.submitButton}>
