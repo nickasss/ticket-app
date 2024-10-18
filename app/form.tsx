@@ -16,9 +16,11 @@ const Form = () => {
   const { participant, setParticipant } = useContext(ParticipantContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [companyName, setcompanyName] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [title, setTitle] = useState('');
-  const [batchYear, setbatchYear] = useState('');
+  const [batchYear, setBatchYear] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   //errors
   const [firstNameError, setFirstNameError] = useState('');
@@ -26,6 +28,8 @@ const Form = () => {
   const [companyNameError, setcompanyNameError] = useState('');
   const [titleError, setTitleError] = useState('');
   const [batchYearError, setBatchYearError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [emailError, setemailError] = useState('');
 
   const router = useRouter();
 
@@ -50,6 +54,16 @@ const Form = () => {
 
     if (companyName && !title) {
       setTitleError('Title is required if company name is provided');
+      valid = false;
+    }
+
+    if (!email) {
+      setemailError('Email is required');
+      valid = false;
+    }
+
+    if (!phone) {
+      setPhoneError('Phone Number is required');
       valid = false;
     }
 
@@ -81,6 +95,8 @@ const Form = () => {
         lastname: lastName,
         qrData: p.qrData,
         title: title,
+        phone: phone,
+        email: email
       };
     });
 
@@ -108,70 +124,83 @@ const Form = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.FormContainer}>
+      <View style={styles.container}>
+        <View style={styles.formContainer}>
           <Text style={styles.titleText}>PERSONAL DETAILS</Text>
           <Text style={styles.subTitleText}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            Please input the following details
           </Text>
+          <Text style={styles.inputTitle}>First Name</Text>
+          <TextInput
+            placeholder="Write your First Name"
+            style={styles.input}
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+          {firstNameError && (
+            <Text style={styles.errorText}>{firstNameError}</Text>
+          )}
 
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputTitle}>First Name</Text>
-            <TextInput
-              placeholder="Write your First Name"
-              style={styles.input}
-              value={firstName}
-              onChangeText={setFirstName}
-            />
-            {firstNameError ? (
-              <Text style={styles.errorText}>{firstNameError}</Text>
-            ) : null}
+          <Text style={styles.inputTitle}>Last Name</Text>
+          <TextInput
+            placeholder="Write your Last Name"
+            style={styles.input}
+            value={lastName}
+            onChangeText={setLastName}
+          />
+          {lastNameError && (
+            <Text style={styles.errorText}>{lastNameError}</Text>
+          )}
 
-            <Text style={styles.inputTitle}>Last Name</Text>
-            <TextInput
-              placeholder="Write your Last Name"
-              style={styles.input}
-              value={lastName}
-              onChangeText={setLastName}
-            />
-            {lastNameError ? (
-              <Text style={styles.errorText}>{lastNameError}</Text>
-            ) : null}
+          <Text style={styles.inputTitle}>Company</Text>
+          <TextInput
+            placeholder="Write your Company Name"
+            style={styles.input}
+            value={companyName}
+            onChangeText={setCompanyName}
+          />
 
-            <Text style={styles.inputTitle}>Company</Text>
-            <TextInput
-              placeholder="Write your Company Name"
-              style={styles.input}
-              value={companyName}
-              onChangeText={setcompanyName}
-            />
+          <Text style={styles.inputTitle}>Title</Text>
+          <TextInput
+            placeholder="Write your Title"
+            style={styles.input}
+            value={title}
+            onChangeText={setTitle}
+          />
+          {titleError && <Text style={styles.errorText}>{titleError}</Text>}
 
-            <Text style={styles.inputTitle}>Title</Text>
-            <TextInput
-              placeholder="Write your Title"
-              style={styles.input}
-              value={title}
-              onChangeText={setTitle}
-            />
-            {titleError ? (
-              <Text style={styles.errorText}>{titleError}</Text>
-            ) : null}
+          <Text style={styles.inputTitle}>Batch Year</Text>
+          <TextInput
+            placeholder="Write your Batch Year"
+            style={styles.input}
+            value={batchYear}
+            inputMode="numeric"
+            keyboardType="numeric"
+            onChangeText={setBatchYear}
+          />
+          {batchYearError && (
+            <Text style={styles.errorText}>{batchYearError}</Text>
+          )}
 
-            <Text style={styles.inputTitle}>Batch Year</Text>
-            <TextInput
-              placeholder="Write your Batch Year"
-              style={styles.input}
-              value={batchYear}
-              inputMode="numeric"
-              keyboardType="numeric"
-              onChangeText={setbatchYear}
-            />
-            {batchYearError ? (
-              <Text style={styles.errorText}>{batchYearError}</Text>
-            ) : null}
-          </View>
-
+          <Text>Phone Number</Text>
+          <TextInput
+            placeholder="Write your Phone Number"
+            style={styles.input}
+            value={phone}
+            inputMode="text"
+            onChangeText={setPhone}
+          />
+          {phoneError && <Text style={styles.errorText}>{phoneError}</Text>}
+          <Text>Email</Text>
+          <TextInput
+            placeholder="Write your Email"
+            style={styles.input}
+            value={email}
+            inputMode="email"
+            keyboardType="email-address"
+            onChangeText={setEmail}
+          />
+          {emailError && <Text style={styles.errorText}>{emailError}</Text>}
           <Pressable style={styles.submitButton} onPress={handleSubmit}>
             <Text
               style={{
@@ -183,7 +212,7 @@ const Form = () => {
             </Text>
           </Pressable>
         </View>
-      </SafeAreaView>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
@@ -191,9 +220,10 @@ const Form = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAF8F6',
+    justifyContent: 'center',
+    height: '100%',
   },
-  FormContainer: {
+  formContainer: {
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 20,
@@ -209,9 +239,6 @@ const styles = StyleSheet.create({
     color: '#5F6266',
     textAlign: 'center',
     marginBottom: 60,
-  },
-  inputGroup: {
-    marginBottom: 150,
   },
   inputTitle: {
     marginBottom: 5,
@@ -233,6 +260,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#181B1E',
     padding: 10,
+    marginTop: 15,
   },
   submitButtonText: {
     color: '#FAF8F6',

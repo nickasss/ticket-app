@@ -30,11 +30,11 @@ const ConfirmForm = () => {
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Phone:</Text>
-          <Text style={styles.inputText}>09123456789</Text>
+          <Text style={styles.inputText}>{participant!.phone}</Text>
         </View>
         <View style={styles.detailRow}>
           <Text style={styles.label}>Email:</Text>
-          <Text style={styles.inputText}>gwapo123@gmail.com</Text>
+          <Text style={styles.inputText}>{participant!.email}</Text>
         </View>
     
         

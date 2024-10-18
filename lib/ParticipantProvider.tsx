@@ -8,6 +8,8 @@ type Participant = {
   company: string;
   title: string;
   batch: string;
+  phone: string;
+  email: string;
 };
 
 type IParticipantContext = {
@@ -31,7 +33,9 @@ export default function ParticipantProvider({
     firstname: "",
     lastname: "",
     qrData: "",
-    title: ""
+    title: "",
+    phone: "",
+    email: ""
   });
 
   const value = {

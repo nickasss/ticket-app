@@ -17,7 +17,9 @@ const End = () => {
         company: participant.company,
         firstName: participant.firstname,
         lastName: participant.lastname,
-        title: participant.title
+        title: participant.title,
+        phone: participant.phone,
+        email: participant.email
       })
       .then(() => {
         setLoading(false);
