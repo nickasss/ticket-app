@@ -1,4 +1,3 @@
-
 import React, { createContext, useState } from 'react';
 
 type Participant = {
@@ -14,7 +13,7 @@ type Participant = {
 
 type IParticipantContext = {
   participant: Participant | null;
-  setParticipant: React.Dispatch<React.SetStateAction<Participant>>
+  setParticipant: React.Dispatch<React.SetStateAction<Participant>>;
 };
 
 export const ParticipantContext = createContext<IParticipantContext>({
@@ -28,14 +27,14 @@ export default function ParticipantProvider({
   children: React.ReactNode;
 }) {
   const [participant, setParticipant] = useState<Participant>({
-    batch: "",
-    company: "",
-    firstname: "",
-    lastname: "",
-    qrData: "",
-    position: "",
-    phone: "",
-    email: ""
+    batch: '',
+    company: '',
+    firstname: '',
+    lastname: '',
+    qrData: '',
+    position: '',
+    phone: '',
+    email: '',
   });
 
   const value = {

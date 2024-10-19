@@ -36,9 +36,6 @@ const ConfirmForm = () => {
           <Text style={styles.label}>Email:</Text>
           <Text style={styles.inputText}>{participant!.email}</Text>
         </View>
-    
-        
-        
       </View>
       <Link href="/end" style={{ alignSelf: 'center' }}>
         <View style={styles.submitButton}>

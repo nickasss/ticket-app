@@ -1,4 +1,9 @@
-import { ActivityIndicator, SafeAreaView, StyleSheet, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'expo-router';
 import { doc, setDoc } from 'firebase/firestore';
@@ -10,7 +15,7 @@ const End = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   useEffect(() => {
-    console.log("trying to send data to db")
+    console.log('trying to send data to db');
     if (participant?.qrData) {
       setDoc(doc(db, 'tickets', participant.qrData), {
         batch: participant.batch,
@@ -19,15 +24,15 @@ const End = () => {
         lastName: participant.lastname,
         position: participant.position,
         phone: participant.phone,
-        email: participant.email
+        email: participant.email,
       })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setError(true)
-      });
+        .then(() => {
+          setLoading(false);
+        })
+        .catch((e) => {
+          console.log(e);
+          setError(true);
+        });
     }
   }, []);
 
@@ -60,7 +65,7 @@ export default End;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

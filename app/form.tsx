@@ -41,8 +41,8 @@ const Form = () => {
     // setCompanyNameError('');
     setPositionError('');
     setBatchYearError('');
-    setPhoneError('')
-    setEmailError('')
+    setPhoneError('');
+    setEmailError('');
 
     if (!firstName) {
       setFirstNameError('First Name is required');
@@ -98,7 +98,7 @@ const Form = () => {
         qrData: p.qrData,
         position: position,
         phone: phone,
-        email: email
+        email: email,
       };
     });
 
@@ -169,7 +169,9 @@ const Form = () => {
             value={position}
             onChangeText={setPosition}
           />
-          {positionError && <Text style={styles.errorText}>{positionError}</Text>}
+          {positionError && (
+            <Text style={styles.errorText}>{positionError}</Text>
+          )}
 
           <Text style={styles.inputTitle}>Batch Year</Text>
           <TextInput
