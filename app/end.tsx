@@ -1,8 +1,8 @@
 import {
   ActivityIndicator,
-  SafeAreaView,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'expo-router';
@@ -38,25 +38,25 @@ const End = () => {
 
   if (error)
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Text>Error</Text>
-      </SafeAreaView>
+      </View>
     );
   if (loading)
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Text>Loading</Text>
         <ActivityIndicator />
-      </SafeAreaView>
+      </View>
     );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text>Thank you. Your form has been submitted.</Text>
       <Link href="/">
         <Text>Return to Camera</Text>
       </Link>
-    </SafeAreaView>
+    </View>
   );
 };
 

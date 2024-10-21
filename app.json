@@ -20,7 +20,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["CAMERA"]
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.wends.ticketapp"
     },
     "web": {
       "bundler": "metro",
@@ -29,12 +34,21 @@
     },
     "plugins": [
       "expo-router",
-      ["expo-camera", {
-        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
-      }]
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7f490c85-87d8-43c9-ab59-8c36f1c6a010"
+      }
+    },
+    "owner": "wends"
   }
 }

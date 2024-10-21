@@ -1,8 +1,9 @@
-import { SafeAreaView, StyleSheet, Text, View, Button } from 'react-native';
-import { useRouter, Link, useNavigation } from 'expo-router';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { useRouter, useNavigation } from 'expo-router';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { ParticipantContext } from '@/lib/ParticipantProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Index = () => {
   const { participant, setParticipant } = useContext(ParticipantContext);
@@ -24,14 +25,12 @@ const Index = () => {
 
   if (!cameraPermission) {
     console.log('loading');
-    // Camera permissions are still loading.
     return <View />;
   }
   if (!cameraPermission.granted) {
-    // Camera permissions are not granted yet.
     console.log('asking');
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <Text>We need your permission to show the camera</Text>
         <Button onPress={requestCameraPermission} title="grant permission" />
       </SafeAreaView>
@@ -40,7 +39,7 @@ const Index = () => {
   console.log('permission granted');
   console.log(participant);
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView style={{...styles.safeContainer, flex: 1}}>
       <View style={styles.container}>
         <Text>Please scan the QR code provided.</Text>
         <CameraView
