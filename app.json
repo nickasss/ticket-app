@@ -24,7 +24,8 @@
         "CAMERA",
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.dalemark.ticketapp"
     },
     "web": {
       "bundler": "metro",
@@ -47,6 +48,12 @@
       "eas": {
         "projectId": "821fef78-dcbc-4249-9661-1a62f0d89815"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/821fef78-dcbc-4249-9661-1a62f0d89815"
     }
   }
 }
