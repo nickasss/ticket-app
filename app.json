@@ -7,6 +7,9 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "fonts": {
+      "SpaceMono": "./assets/fonts/SpaceMono-Regular.ttf"
+    },
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -33,6 +36,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "expo-font",
       "expo-router",
       [
         "expo-camera",
