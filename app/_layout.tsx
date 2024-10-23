@@ -1,59 +1,58 @@
-// RootLayout.tsx
+import { useCallback, useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
-import { Stack } from 'expo-router';
-import { View } from 'react-native';
+import { Link, Stack } from 'expo-router';
 import ParticipantProvider from '@/lib/ParticipantProvider';
-import { useCameraPermissions } from 'expo-camera';
+import { View } from 'react-native';
 
-// Keep splash screen visible
+// Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync().catch(() => {
-  /* ignore error */
+  /* reloading the app might trigger some race conditions, ignore them */
 });
 
 export default function RootLayout() {
-  const [isReady, setIsReady] = useState(false);
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    // Add any other fonts you need here
   });
-  const [permission, requestPermission] = useCameraPermissions();
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        // Pre-load fonts, permissions, etc.
-        if (!permission?.granted) {
-          await requestPermission();
-        }
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setIsReady(true);
-      }
-    }
+    if (error) console.log('Font loading error:', error);
+  }, [error]);
 
-    prepare();
-  }, []);
+ useEffect(() => {
+  if (loaded) {
+    // Force hide splash screen after 5 seconds if something goes wrong
+    const timeout = setTimeout(() => {
+      SplashScreen.hideAsync().catch(() => {});
+    }, 5000);
 
-  useEffect(() => {
-    if (loaded && isReady) {
-      // Hide splash screen once everything is ready
-      SplashScreen.hideAsync().catch(console.warn);
-    }
-  }, [loaded, isReady]);
+    return () => clearTimeout(timeout);
+  }
+}, [loaded]);
 
-  if (!loaded || !isReady) {
-    return <View />;
+  if (!loaded) {
+    return null;
   }
 
   return (
-    <ParticipantProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </ParticipantProvider>
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <ParticipantProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        />
+      </ParticipantProvider>
+    </View>
   );
 }
+
+const onLayoutRootView = useCallback(async () => {
+  try {
+    await SplashScreen.hideAsync();
+  } catch (e) {
+    // Ignore errors
+    console.warn('Error hiding splash screen:', e);
+  }
+}, []);
