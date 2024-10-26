@@ -1,10 +1,10 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
-import { Link, Stack } from 'expo-router';
-import { Button, Text } from 'react-native';
+import { Stack } from 'expo-router';
 import ParticipantProvider from '@/lib/ParticipantProvider';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -25,12 +25,16 @@ export default function RootLayout() {
   }
 
   return (
-    <ParticipantProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </ParticipantProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ParticipantProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+        </ParticipantProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
