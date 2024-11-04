@@ -7,7 +7,6 @@ type Participant = {
   lastname: string;
   company: string;
   position: string;
-  batch: string;
   phone: string;
   email: string;
 };
@@ -28,7 +27,6 @@ export default function ParticipantProvider({
   children: React.ReactNode;
 }) {
   const [participant, setParticipant] = useState<Participant>({
-    batch: "",
     company: "",
     firstname: "",
     lastname: "",

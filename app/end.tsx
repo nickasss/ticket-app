@@ -13,7 +13,6 @@ const End = () => {
     console.log("trying to send data to db")
     if (participant?.qrData) {
       setDoc(doc(db, 'tickets', participant.qrData), {
-        batch: participant.batch,
         company: participant.company,
         firstName: participant.firstname,
         lastName: participant.lastname,
