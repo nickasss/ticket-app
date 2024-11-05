@@ -13,12 +13,8 @@ const End = () => {
     console.log("trying to send data to db")
     if (participant?.qrData) {
       setDoc(doc(db, 'tickets', participant.qrData), {
-        company: participant.company,
         firstName: participant.firstname,
         lastName: participant.lastname,
-        position: participant.position,
-        phone: participant.phone,
-        email: participant.email
       })
       .then(() => {
         setLoading(false);

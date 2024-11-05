@@ -5,10 +5,6 @@ type Participant = {
   qrData: string;
   firstname: string;
   lastname: string;
-  company: string;
-  position: string;
-  phone: string;
-  email: string;
 };
 
 type IParticipantContext = {
@@ -27,13 +23,9 @@ export default function ParticipantProvider({
   children: React.ReactNode;
 }) {
   const [participant, setParticipant] = useState<Participant>({
-    company: "",
     firstname: "",
     lastname: "",
     qrData: "",
-    position: "",
-    phone: "",
-    email: ""
   });
 
   const value = {

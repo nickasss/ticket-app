@@ -31,9 +31,12 @@ const Index = () => {
     // Camera permissions are not granted yet.
     console.log('asking');
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={styles.container}>
+
+        <Button onPress={requestCameraPermission} title="Grant Permission" />
         <Text>We need your permission to show the camera</Text>
-        <Button onPress={requestCameraPermission} title="grant permission" />
+        </View>
       </SafeAreaView>
     );
   }
@@ -71,6 +74,8 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     justifyContent: 'center',
+    textAlign: 'center',
+    width: "100%"
   },
   container: {
     justifyContent: 'center',

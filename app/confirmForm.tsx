@@ -8,10 +8,7 @@ const ConfirmForm = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>CONFIRM DETAILS</Text>
-      <Text style={styles.subTitleText}>
-        Lorem ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </Text>
+  
 
       <View style={styles.confirmationContainer}>
         <View style={styles.detailRow}>
@@ -20,26 +17,8 @@ const ConfirmForm = () => {
             {participant!.firstname} {participant!.lastname}
           </Text>
         </View>
-        <View style={styles.detailRow}>
-          <Text style={styles.label}>Company:</Text>
-          <Text style={styles.inputText}>{participant!.company}</Text>
-        </View>
-        <View style={styles.detailRow}>
-          <Text style={styles.label}>Position:</Text>
-          <Text style={styles.inputText}>{participant!.position}</Text>
-        </View>
-        <View style={styles.detailRow}>
-          <Text style={styles.label}>Phone:</Text>
-          <Text style={styles.inputText}>{participant!.phone}</Text>
-        </View>
-        <View style={styles.detailRow}>
-          <Text style={styles.label}>Email:</Text>
-          <Text style={styles.inputText}>{participant!.email}</Text>
-        </View>
-    
-        
-        
       </View>
+      
       <Link href="/end" style={{ alignSelf: 'center' }}>
         <View style={styles.submitButton}>
           <Text style={styles.submitButtonText}>Submit</Text>

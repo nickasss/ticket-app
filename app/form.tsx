@@ -20,18 +20,18 @@ const Form = () => {
   const { participant, setParticipant } = useContext(ParticipantContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [position, setPosition] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  // const [companyName, setCompanyName] = useState('');
+  // const [position, setPosition] = useState('');
+  // const [phone, setPhone] = useState('');
+  // const [email, setEmail] = useState('');
 
   //errors
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
-  // const [companyNameError, setCompanyNameError] = useState('');
-  const [positionError, setPositionError] = useState('');
-  const [phoneError, setPhoneError] = useState('');
-  const [emailError, setEmailError] = useState('');
+  // // const [companyNameError, setCompanyNameError] = useState('');
+  // const [positionError, setPositionError] = useState('');
+  // const [phoneError, setPhoneError] = useState('');
+  // const [emailError, setEmailError] = useState('');
 
   const router = useRouter();
 
@@ -40,10 +40,6 @@ const Form = () => {
 
     setFirstNameError('');
     setLastNameError('');
-    // setCompanyNameError('');
-    setPositionError('');
-    setPhoneError('');
-    setEmailError('');
 
     if (!firstName) {
       setFirstNameError('First Name is required');
@@ -55,46 +51,22 @@ const Form = () => {
       valid = false;
     }
 
-    if (companyName && !position) {
-      setPosition('Position is required if company name is provided');
-      valid = false;
-    }
-
-    if (!email) {
-      setEmailError('Email is required');
-      valid = false;
-    }
-
-    if (!phone) {
-      setPhoneError('Phone Number is required');
-      valid = false;
-    }
-
-    const currentYear = new Date().getFullYear();
-
     if (!valid) {
       return;
     }
 
     setParticipant((p) => {
       return {
-        company: companyName,
         firstname: firstName,
         lastname: lastName,
         qrData: p.qrData,
-        position: position,
-        phone: phone,
-        email: email,
       };
     });
 
-    console.log([firstName, lastName, companyName, position]);
     setParticipant((prevParticipant) => ({
       ...prevParticipant,
       firstname: firstName,
       lastname: lastName,
-      company: companyName,
-      position: position,
     }));
 
     router.push('/confirmForm');
@@ -113,7 +85,6 @@ const Form = () => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'height' : 'height'}
-      keyboardVerticalOffset={Dimensions.get('window').height * 0.1} 
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
@@ -144,45 +115,6 @@ const Form = () => {
               <Text style={styles.errorText}>{lastNameError}</Text>
             )}
 
-            <Text style={styles.inputTitle}>Company</Text>
-            <TextInput
-              placeholder="Company Corp"
-              style={styles.input}
-              value={companyName}
-              onChangeText={setCompanyName}
-            />
-
-            <Text style={styles.inputTitle}>Position</Text>
-            <TextInput
-              placeholder="CEO"
-              style={styles.input}
-              value={position}
-              onChangeText={setPosition}
-            />
-            {positionError && (
-              <Text style={styles.errorText}>{positionError}</Text>
-            )}
-
-            <Text>Phone Number</Text>
-            <TextInput
-              placeholder="09123456789"
-              style={styles.input}
-              value={phone}
-              inputMode="numeric"
-              keyboardType="numeric"
-              onChangeText={setPhone}
-            />
-            {phoneError && <Text style={styles.errorText}>{phoneError}</Text>}
-            <Text>Email</Text>
-            <TextInput
-              placeholder="john123@samplemail.com"
-              style={styles.input}
-              value={email}
-              inputMode="email"
-              keyboardType="email-address"
-              onChangeText={setEmail}
-            />
-            {emailError && <Text style={styles.errorText}>{emailError}</Text>}
             <Pressable style={styles.submitButton} onPress={handleSubmit}>
               <Text
                 style={{

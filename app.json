@@ -43,7 +43,6 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
         }
-        
       ]
     ],
     "experiments": {
@@ -59,6 +58,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/821fef78-dcbc-4249-9661-1a62f0d89815"
-    }
+    },
+    "owner": "dalemark"
   }
 }
